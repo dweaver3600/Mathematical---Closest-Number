@@ -1,57 +1,46 @@
 //Prompt
 
-//Given non - zero two integers N and M.The problem is to find the number closest to N 
-//and divisible by M.If there are more than one such number, then output the one having 
-//maximum absolute value.
+//Print the multiplication table of a given number N up to the 10th term
 
 
 #include <iostream>
+#include <vector>
 
 #define PAUSE std::cout << "\n\n"; system("pause");
 
 
-int main() {
+//User function Template for C++
+class Solution
+{
+public:
+	std::vector<int> getTable(int N)
+	{
+		std::vector<int> Table;
 
-	int closestTo;
-	int divisibleBy;
-
-	std::cin >> closestTo;
-	std::cin >> divisibleBy;
-	
-	//positive search
-	int largest_closest;
-	int i = closestTo;
-	while (true) {
-		if (i % divisibleBy == 0) {
-			largest_closest = i;
-			break;
+		for (int i = 1; i <= 10; i++) {
+			Table.push_back(N * i);
 		}
-		i++;
+
+		return Table;
 	}
+};
 
-	//negative search
-	int smallest_closest;
-	i = closestTo;
-	while (true) {
-		if (i % divisibleBy == 0) {
-			smallest_closest = i;
-			break;
-		}
-		
-		i--;
-	}
+// { Driver Code Starts.
+int main()
+{
+	std::cout << "Print the multiplication table of a given number N up to the 10th term.\n\n";
 
-	std::cout << "L: " << largest_closest << " vs S: " << smallest_closest;
+	std::cout << "Enter the desired number to see its multiplication table: ";
 
-	int best_match;
+	int N;
 
-	if (largest_closest - closestTo < closestTo - smallest_closest) {
-		best_match = largest_closest;
-	}
-	else best_match = smallest_closest;
+	std::cin >> N;
+	Solution ob;
+	std::vector<int> ans = ob.getTable(N);
+	for (int i = 0; i < ans.size(); i++)
+		std::cout << ans[i] << " ";
+	std::cout << "\n";
 
-	std::cout << "\nBest Match: " << best_match;
-
-	PAUSE;
+	PAUSE
 	return 0;
-}
+}  // } Driver Code Ends
